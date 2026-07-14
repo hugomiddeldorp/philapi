@@ -1,0 +1,57 @@
+// Use DBML to define your database structure
+// Docs: https://dbml.dbdiagram.io/docs
+
+Table philosophers {
+  id integer [primary key]
+  name text [not null]
+  date_of_birth timestamp
+  date_of_death timestamp
+  country_id integer [ref: > countries.id]
+}
+
+Table schools {
+  id integer [primary key]
+  name text [not null]
+  description text
+}
+
+Table school_memberships {
+  id integer [primary key]
+  philosopher_id integer [ref: > philosophers.id]
+  school_id integer [ref: > schools.id]
+}
+
+Table school_influences {
+  id integer [primary key]
+  school_id integer [ref: > schools.id]
+  influence_by integer [ref: > schools.id]
+}
+
+Table countries {
+  id integer [primary key]
+  name text [not null, unique]
+}
+
+Table relationships {
+  id integer [primary key]
+  teacher_id integer [ref: > philosophers.id]
+  student_id integer [ref: > philosophers.id]
+}
+
+Table works {
+  id integer [primary key]
+  name text [not null]
+  author integer [ref: > philosophers.id]
+  published_year integer
+}
+
+Table subjects {
+  id integer [primary key]
+  name text [not null]
+}
+
+Table work_subjects {
+  id integer [primary key]
+  work_id integer [ref: > works.id]
+  subject_id integer [ref: > subjects.id]
+}
