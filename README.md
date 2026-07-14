@@ -7,4 +7,5 @@ ideas.
 
 - [In progress] Schema design
 - API design
+- Docker
 - Deployment
